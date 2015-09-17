@@ -33,7 +33,7 @@
                             @"http://cdn.duitang.com/uploads/item/201410/19/20141019225743_3V4Mc.jpeg",
                             @"http://img1.91.com/uploads/allimg/131129/44-1311291G340.jpg"];
     GSImageCollectionViewController *imageCollectionVC = [GSImageCollectionViewController viewControllerWithDataSource:dataSource];
-    imageCollectionVC.defaultPageIndex = 2;
+//    imageCollectionVC.defaultPageIndex = 2;
     [self.navigationController pushViewController:imageCollectionVC animated:YES];
 }
 

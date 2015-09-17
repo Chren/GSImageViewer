@@ -9,6 +9,7 @@
 #import "GSImageCollectionViewController.h"
 #import "GSImagePreviewCell.h"
 #import "UIImage+Bundle.h"
+#import <SDWebImage/SDWebImageManager.h>
 
 @interface GSImageCollectionViewController ()
 <UIGestureRecognizerDelegate,
@@ -22,6 +23,7 @@ GSImagePreviewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarTopConstraint;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (assign, nonatomic) CGFloat lastContentOffsetX;
 @end
 
 @implementation GSImageCollectionViewController
@@ -50,6 +52,13 @@ GSImagePreviewCellDelegate>
     [self.pageControl setNumberOfPages:self.dataSource.count];
     [self updateCurrentPageIndex:self.defaultPageIndex];
     [self.collectionView reloadData];
+    if (self.defaultPageIndex > 0) {
+        [self tryPreloadPageIndex:self.defaultPageIndex - 1];
+    }
+    
+    if (self.defaultPageIndex < self.dataSource.count - 1) {
+        [self tryPreloadPageIndex:self.defaultPageIndex + 1];
+    }
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -75,6 +84,24 @@ GSImagePreviewCellDelegate>
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tryPreloadPageIndex:(NSInteger)aPageIndex
+{
+    if (aPageIndex < self.dataSource.count) {
+        id imageObject = [self.dataSource objectAtIndex:aPageIndex];
+        if ([imageObject isKindOfClass:[NSString class]]) {
+            if (![[SDWebImageManager sharedManager] cachedImageExistsForURL:[NSURL URLWithString:imageObject]]) {
+                [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imageObject] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                    
+                } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                    if (error) {
+                        NSLog(@"error %@", error.description);
+                    }
+                }];
+            }
+        }
+    }
 }
 
 #pragma mark - Data Source
@@ -166,7 +193,7 @@ GSImagePreviewCellDelegate>
     cell.delegate = self;
     // scroll to preset pageindex if it has been set
     if (self.defaultPageIndex > 0) {
-        [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.defaultPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.defaultPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         [self updateCurrentPageIndex:self.defaultPageIndex];
         self.defaultPageIndex = 0;
     }
@@ -203,7 +230,25 @@ GSImagePreviewCellDelegate>
 #pragma mark - UIScrollViewDelegate
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.collectionView) {
-        [self updateCurrentPageIndex:[self horizontalPageNumber:scrollView]];
+        NSInteger currentPageIndex = [self horizontalPageNumber:scrollView];
+        [self updateCurrentPageIndex:currentPageIndex];
+        if (self.lastContentOffsetX < scrollView.contentOffset.x) {
+            if (currentPageIndex < self.dataSource.count - 1) {
+                [self tryPreloadPageIndex:currentPageIndex + 1];
+            }
+        } else if (self.lastContentOffsetX > scrollView.contentOffset.x) {
+            if (currentPageIndex > 0) {
+                [self tryPreloadPageIndex:currentPageIndex - 1];
+            }
+        }
+        self.lastContentOffsetX = scrollView.contentOffset.x;
+    }
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    if (scrollView == self.collectionView) {
+        self.lastContentOffsetX = scrollView.contentOffset.x;
     }
 }
 
