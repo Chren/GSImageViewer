@@ -17,6 +17,7 @@ NSLocalizedStringFromTable(key, @"GSImagePreview", nil)
 @property (strong, nonatomic) NSArray *dataSource;
 @property (assign, nonatomic) NSInteger defaultPageIndex;
 
++(instancetype)viewControllerWithDataSource:(NSArray *)aDataSource;
 /**
  *  Called before saving, override it for custom action before save
  */

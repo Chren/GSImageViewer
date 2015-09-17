@@ -24,6 +24,12 @@ GSImagePreviewCellDelegate>
 @end
 
 @implementation GSImageCollectionViewController
++(instancetype)viewControllerWithDataSource:(NSArray *)aDataSource
+{
+    GSImageCollectionViewController *imageCollectionVC = [[GSImageCollectionViewController alloc] initWithNibName:@"GSImageCollectionViewController" bundle:nil];
+    [imageCollectionVC setDataSource:aDataSource];
+    return imageCollectionVC;
+}
 
 #pragma mark - ViewLifeCycle
 - (void)viewDidLoad {
