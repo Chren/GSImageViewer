@@ -17,6 +17,7 @@ GSImagePreviewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (assign, nonatomic) BOOL defaultNavigationBarHidden;
+@property (assign, nonatomic) BOOL defaultStatusBarHidden;
 @property (weak, nonatomic) IBOutlet UIView *topToolbarView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarTopConstraint;
@@ -60,12 +61,15 @@ GSImagePreviewCellDelegate>
     [super viewWillAppear:animated];
     self.defaultNavigationBarHidden = self.navigationController.navigationBarHidden;
     self.navigationController.navigationBarHidden = YES;
+    self.defaultStatusBarHidden = [UIApplication sharedApplication].statusBarHidden;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = self.defaultNavigationBarHidden;
+    [[UIApplication sharedApplication] setStatusBarHidden:self.defaultStatusBarHidden withAnimation:UIStatusBarAnimationNone];
+    [self.navigationController setNavigationBarHidden:self.defaultNavigationBarHidden animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,17 +130,17 @@ GSImagePreviewCellDelegate>
         [hudView removeFromSuperview];
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
-
+    
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Private Util
 - (NSInteger)horizontalPageNumber:(UIScrollView *)scrollView {
@@ -172,8 +176,8 @@ GSImagePreviewCellDelegate>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSInteger row = indexPath.row;
-//    CGSize cellSize = CGSizeZero;
+    //    NSInteger row = indexPath.row;
+    //    CGSize cellSize = CGSizeZero;
     return collectionView.frame.size;
 }
 
@@ -193,7 +197,7 @@ GSImagePreviewCellDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
 }
 
 #pragma mark - UIScrollViewDelegate
