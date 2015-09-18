@@ -9,7 +9,7 @@ GSImageViewer is an easy to use image viewer, which support multiple images and 
 #### Podfile
 ```
 platform :ios, '7.0'
-pod 'GSImageViewer', '~>1.0.0'
+pod 'GSImageViewer', '~>1.0.1'
 ```
 ### Install manually
 - Clone GSImageViewer repository.
