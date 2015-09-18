@@ -1,6 +1,7 @@
 # GSImageViewer
 GSImageViewer is an easy to use image viewer, which support multiple images and web image prefetch.
 
+![GSImageViewer](https://github.com/Chren/GSImageViewer/blob/master/GSImageViewerExample/ScreenShot/screenshot.jpg?raw=true)
 ## Howto Install
 ### Install with CocoaPods
 [CocoaPods](http://cocoapods.org/) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects. See the [Get Started](http://cocoapods.org/#get_started) section for more details.
