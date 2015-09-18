@@ -14,7 +14,8 @@ static const CGFloat kImagePreviewScaleStep = 3.0f;
 
 @interface GSImagePreviewCell()
 <UIScrollViewDelegate>
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (strong, nonatomic) id imageObject;
 @end
 
 @implementation GSImagePreviewCell
@@ -91,16 +92,15 @@ static const CGFloat kImagePreviewScaleStep = 3.0f;
 
 - (void)bindWithImageObject:(id)anImageObject
 {
+    self.imageObject = anImageObject;
     if ([anImageObject isKindOfClass:[UIImage class]]) {
         [self bindWithImage:anImageObject];
     } else if ([anImageObject isKindOfClass:[NSString class]]) {
         __weak typeof(self) weakSelf = self;
         [self.indicatorView startAnimating];
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:anImageObject] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            
             if (error) {
-                [weakSelf bindWithImage:[UIImage imageNamed:@"gs_img_default" inBundleName:@"GSImagePreview.bundle"]];
-                [weakSelf.imageView setContentMode:UIViewContentModeCenter];
+                [self showFailedImage];
             } else {
                 [weakSelf bindWithImage:image];
             }
@@ -115,6 +115,7 @@ static const CGFloat kImagePreviewScaleStep = 3.0f;
 
 - (void)bindWithImage:(UIImage *)aImage
 {
+    self.failedButton.hidden = YES;
     [self.imageView setImage:aImage];
     
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -137,6 +138,39 @@ static const CGFloat kImagePreviewScaleStep = 3.0f;
     [self.scrollView setContentSize:CGSizeMake(fmaxf(width, contentWidth), fmaxf(height, contentHeight))];
     [self.imageView setFrame:CGRectMake(0, -(contentHeight - height)/2, contentWidth, contentHeight)];
     [self.imageView setCenter:CGPointMake(self.scrollView.contentSize.width/2.0, self.scrollView.contentSize.height/2.0)];
+}
+
+#pragma mark - Failed Image
+- (void)showFailedImage
+{
+    if (self.failedButton == nil) {
+        UIButton *failedButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        self.failedButton = failedButton;
+        [self.failedButton addTarget:self action:@selector(onRetryButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [failedButton setImage:[UIImage imageNamed:@"gs_img_default" inBundleName:@"GSImagePreview.bundle"] forState:UIControlStateNormal];
+        [self addSubview:failedButton];
+        [self.failedButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_failedButton
+                                                         attribute:NSLayoutAttributeCenterX
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeCenterX
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_failedButton
+                                                         attribute:NSLayoutAttributeCenterY
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeCenterY
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_failedButton);
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_failedButton(100)]" options:0   metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_failedButton(100)]" options:0   metrics:nil views:views]];
+    }
+    self.failedButton.hidden = NO;
 }
 
 #pragma mark - UIScrollviewDelegate
@@ -188,10 +222,17 @@ static const CGFloat kImagePreviewScaleStep = 3.0f;
     [self scaleAtPoint:point];
 }
 
+#pragma mark - Action
+- (void)onRetryButtonAction:(id)aSender
+{
+    [self bindWithImageObject:self.imageObject];
+}
+
 #pragma mark - Reuse
 - (void)prepareForReuse
 {
     [self.indicatorView stopAnimating];
+    self.failedButton.hidden = YES;
     [self.imageView setImage:nil];
     self.scrollView.zoomScale = 1.0f;
 }

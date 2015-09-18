@@ -16,6 +16,7 @@
 
 @interface GSImagePreviewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIButton *failedButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) id<GSImagePreviewCellDelegate> delegate;
 

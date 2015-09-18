@@ -126,7 +126,7 @@ GSImagePreviewCellDelegate>
 {
     [self.pageControl setCurrentPage:aPageIndex];
     GSImagePreviewCell *cell = (GSImagePreviewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:aPageIndex inSection:0]];
-    self.saveButton.enabled = cell.imageView.image;
+    self.saveButton.enabled = cell.imageView.image!=nil;
 }
 
 - (void)showHudWithString:(NSString *)aString
