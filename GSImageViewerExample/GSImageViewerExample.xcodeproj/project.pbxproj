@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		79B98D23289CB9D1814AD71F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5691DF8E75AD40119EDFBF37 /* libPods.a */; };
+		B46720971BABE8BA00737405 /* GSImagePreview.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46720941BABE8BA00737405 /* GSImagePreview.strings */; settings = {ASSET_TAGS = (); }; };
 		B47DAB1C1BAA9E2C000D24DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B47DAB1B1BAA9E2C000D24DF /* main.m */; };
 		B47DAB1F1BAA9E2C000D24DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B47DAB1E1BAA9E2C000D24DF /* AppDelegate.m */; };
 		B47DAB221BAA9E2C000D24DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47DAB211BAA9E2C000D24DF /* ViewController.m */; };
@@ -18,7 +19,6 @@
 		B47DAB5F1BAA9ECB000D24DF /* GSImageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47DAB541BAA9ECB000D24DF /* GSImageCollectionViewController.m */; };
 		B47DAB601BAA9ECB000D24DF /* GSImageCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47DAB551BAA9ECB000D24DF /* GSImageCollectionViewController.xib */; };
 		B47DAB611BAA9ECB000D24DF /* GSImagePreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B47DAB571BAA9ECB000D24DF /* GSImagePreviewCell.m */; };
-		B47DAB621BAA9ECB000D24DF /* GSImagePreview.strings in Resources */ = {isa = PBXBuildFile; fileRef = B47DAB591BAA9ECB000D24DF /* GSImagePreview.strings */; };
 		B47DAB631BAA9ECB000D24DF /* GSImagePreview.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B47DAB5B1BAA9ECB000D24DF /* GSImagePreview.bundle */; };
 		B47DAB641BAA9ECB000D24DF /* UIImage+Bundle.m in Sources */ = {isa = PBXBuildFile; fileRef = B47DAB5E1BAA9ECB000D24DF /* UIImage+Bundle.m */; };
 /* End PBXBuildFile section */
@@ -36,6 +36,8 @@
 /* Begin PBXFileReference section */
 		2EB24C5EB9DED4AC3AFB4104 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5691DF8E75AD40119EDFBF37 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B46720951BABE8BA00737405 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GSImagePreview.strings; sourceTree = "<group>"; };
+		B46720961BABE8BA00737405 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GSImagePreview.strings"; sourceTree = "<group>"; };
 		B47DAB161BAA9E2C000D24DF /* GSImageViewerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSImageViewerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47DAB1A1BAA9E2C000D24DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B47DAB1B1BAA9E2C000D24DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,9 +56,7 @@
 		B47DAB551BAA9ECB000D24DF /* GSImageCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GSImageCollectionViewController.xib; sourceTree = "<group>"; };
 		B47DAB561BAA9ECB000D24DF /* GSImagePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSImagePreviewCell.h; sourceTree = "<group>"; };
 		B47DAB571BAA9ECB000D24DF /* GSImagePreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSImagePreviewCell.m; sourceTree = "<group>"; };
-		B47DAB5A1BAA9ECB000D24DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GSImagePreview.strings; sourceTree = "<group>"; };
 		B47DAB5B1BAA9ECB000D24DF /* GSImagePreview.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GSImagePreview.bundle; sourceTree = "<group>"; };
-		B47DAB5C1BAA9ECB000D24DF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GSImagePreview.strings"; sourceTree = "<group>"; };
 		B47DAB5D1BAA9ECB000D24DF /* UIImage+Bundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bundle.h"; sourceTree = "<group>"; };
 		B47DAB5E1BAA9ECB000D24DF /* UIImage+Bundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bundle.m"; sourceTree = "<group>"; };
 		F5F4BE604F2D5A90CF1C7A6B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +87,14 @@
 				5691DF8E75AD40119EDFBF37 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B46720931BABE8BA00737405 /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				B46720941BABE8BA00737405 /* GSImagePreview.strings */,
+			);
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 		B47DAB0D1BAA9E2C000D24DF = {
@@ -170,7 +178,7 @@
 		B47DAB581BAA9ECB000D24DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B47DAB591BAA9ECB000D24DF /* GSImagePreview.strings */,
+				B46720931BABE8BA00737405 /* Localizations */,
 				B47DAB5B1BAA9ECB000D24DF /* GSImagePreview.bundle */,
 			);
 			path = Resources;
@@ -269,11 +277,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B47DAB631BAA9ECB000D24DF /* GSImagePreview.bundle in Resources */,
-				B47DAB621BAA9ECB000D24DF /* GSImagePreview.strings in Resources */,
 				B47DAB601BAA9ECB000D24DF /* GSImageCollectionViewController.xib in Resources */,
 				B47DAB251BAA9E2C000D24DF /* Main.storyboard in Resources */,
 				B47DAB2A1BAA9E2C000D24DF /* LaunchScreen.xib in Resources */,
 				B47DAB271BAA9E2C000D24DF /* Images.xcassets in Resources */,
+				B46720971BABE8BA00737405 /* GSImagePreview.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +360,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B46720941BABE8BA00737405 /* GSImagePreview.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B46720951BABE8BA00737405 /* en */,
+				B46720961BABE8BA00737405 /* zh-Hans */,
+			);
+			name = GSImagePreview.strings;
+			sourceTree = "<group>";
+		};
 		B47DAB231BAA9E2C000D24DF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,15 +383,6 @@
 				B47DAB291BAA9E2C000D24DF /* Base */,
 			);
 			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		B47DAB591BAA9ECB000D24DF /* GSImagePreview.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B47DAB5A1BAA9ECB000D24DF /* en */,
-				B47DAB5C1BAA9ECB000D24DF /* zh-Hans */,
-			);
-			name = GSImagePreview.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
