@@ -41,7 +41,7 @@ git clone --recursive https://github.com/rs/SDWebImage.git
     NSArray *dataSource = @[@"http://img5.duitang.com/uploads/item/201410/13/20141013002336_ESvrT.jpeg",
                             @"http://mg.soupingguo.com/bizhi/big/10/285/619/10285619.jpg"];
     GSImageCollectionViewController *imageCollectionVC = [GSImageCollectionViewController viewControllerWithDataSource:dataSource];
-    imageCollectionVC.defaultPageIndex = 2;
+    imageCollectionVC.defaultPageIndex = 1;
     [self.navigationController pushViewController:imageCollectionVC animated:YES];
 ```
 
