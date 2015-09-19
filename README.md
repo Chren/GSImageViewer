@@ -1,5 +1,5 @@
 # GSImageViewer
-GSImageViewer is an easy to use image viewer, which support multiple images and web image prefetch.
+GSImageViewer is a simple and easy to use image viewer. It supports basic image viewing, scaling, saving, you can set two kind of datasource: a collection of UIImages or a collection of web image urls. It also support prefetch when sliding.
 
 ![GSImageViewer](https://github.com/Chren/GSImageViewer/blob/master/GSImageViewerExample/ScreenShot/screenshot.jpg?raw=true)
 ## Howto Install
