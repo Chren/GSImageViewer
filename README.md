@@ -1,5 +1,5 @@
 # GSImageViewer
-GSImageViewer is an easy to use image viewer, which support multiple images and web image prefetch.
+GSImageViewer is a simple and easy to use image viewer. It supports basic image viewing, scaling, saving, you can set two kind of datasource: a collection of UIImages or a collection of web image urls. It also support prefetch when sliding.
 
 ![GSImageViewer](https://github.com/Chren/GSImageViewer/blob/master/GSImageViewerExample/ScreenShot/screenshot.jpg?raw=true)
 ## Howto Install
@@ -9,7 +9,7 @@ GSImageViewer is an easy to use image viewer, which support multiple images and 
 #### Podfile
 ```
 platform :ios, '7.0'
-pod 'GSImageViewer', '~>1.0.0'
+pod 'GSImageViewer', '~>1.0.1'
 ```
 ### Install manually
 - Clone GSImageViewer repository.
@@ -41,7 +41,7 @@ git clone --recursive https://github.com/rs/SDWebImage.git
     NSArray *dataSource = @[@"http://img5.duitang.com/uploads/item/201410/13/20141013002336_ESvrT.jpeg",
                             @"http://mg.soupingguo.com/bizhi/big/10/285/619/10285619.jpg"];
     GSImageCollectionViewController *imageCollectionVC = [GSImageCollectionViewController viewControllerWithDataSource:dataSource];
-    imageCollectionVC.defaultPageIndex = 2;
+    imageCollectionVC.defaultPageIndex = 1;
     [self.navigationController pushViewController:imageCollectionVC animated:YES];
 ```
 
