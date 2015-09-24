@@ -50,6 +50,7 @@ GSImagePreviewCellDelegate>
     // init collectionView
     [self.collectionView registerClass:[GSImagePreviewCell class] forCellWithReuseIdentifier:@"GSImagePreviewCell"];
     [self.pageControl setNumberOfPages:self.dataSource.count];
+    self.pageControl.hidden = self.dataSource.count <= 1;
     [self updateCurrentPageIndex:self.defaultPageIndex];
     [self.collectionView reloadData];
     if (self.defaultPageIndex > 0) {
@@ -109,6 +110,8 @@ GSImagePreviewCellDelegate>
 {
     _dataSource = dataSource;
     [self.pageControl setNumberOfPages:dataSource.count];
+    self.pageControl.hidden = self.dataSource.count <= 1;
+    
     [self.collectionView reloadData];
 }
 
