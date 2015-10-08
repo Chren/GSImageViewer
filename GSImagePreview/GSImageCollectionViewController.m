@@ -196,7 +196,7 @@ GSImagePreviewCellDelegate>
     cell.delegate = self;
     // scroll to preset pageindex if it has been set
     if (self.defaultPageIndex > 0) {
-        [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.defaultPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.defaultPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
         [self updateCurrentPageIndex:self.defaultPageIndex];
         self.defaultPageIndex = 0;
     }
